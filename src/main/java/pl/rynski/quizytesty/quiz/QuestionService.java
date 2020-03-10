@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import pl.rynski.quizytesty.repository.CategoryRepository;
 import pl.rynski.quizytesty.repository.QuestionRepostiory;
 
+import java.util.List;
+
 @Service
 public class QuestionService {
 
@@ -17,8 +19,19 @@ public class QuestionService {
         this.categoryRepository = categoryRepository;
     }
 
-    public void addQuestion(Question question, String author) {
+    public void addPublicQuestion(Question question, String author) {
         question.setAuthor(author);
         questionRepostiory.save(question);
+    }
+
+    public void addPrivateQuestion(Question question, String author) {
+        question.setAuthor(author);
+        question.setPrivate(true);
+        question.setAccepted(true);
+        questionRepostiory.save(question);
+    }
+
+    public List<Question> getUnacceptedQuestions() {
+        return questionRepostiory.findAllByAcceptedIsFalse();
     }
 }

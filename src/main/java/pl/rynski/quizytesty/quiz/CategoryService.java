@@ -19,4 +19,13 @@ public class CategoryService {
     public List<Category> getPublicCategories() {
         return categoryRepository.findAllByAuthor("GLOBAL");
     }
+
+    public List<Category> getPrivateCategories(String author) {
+        return categoryRepository.findAllByAuthor(author);
+    }
+
+    public void addCategory(Category category, String author) {
+        category.setAuthor(author);
+        categoryRepository.save(category);
+    }
 }

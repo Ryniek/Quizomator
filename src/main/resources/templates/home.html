@@ -10,7 +10,19 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                Narazie nic
+                <a th:href="@{/generatePrivateQuiz}">Wylosuj pytania do testu</a> <br />
+                <a th:href="@{/showPrivateQuestions}">Pokaż swoje prywatne pytania</a> <br />
+                <a th:href="@{/showPublicQuestions}">Pokaż dodane przez Ciebie publiczne pytania</a> <br />
+            </div>
+            <div class="col">
+                <h3>Dodaj pytanie:</h3>
+                <a th:href="@{/addPublicQuestion}">Publiczne</a>
+                <a th:href="@{/addPrivateQuestion}">Prywatne</a>
+            </div>
+            <div class="col">
+                <h3>Dodaj pytanie:</h3>
+                <a th:href="@{/addPublicQuestion}">Publiczne</a>
+                <a th:href="@{/addPrivateQuestion}">Prywatne</a>
             </div>
             <div class="col">
                 <h3>Dodaj pytanie:</h3>

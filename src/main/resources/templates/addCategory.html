@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dodaj prywatną kategorie pytań</title>
+</head>
+<body>
+    <h3>Dodaj prywatną kategorie</h3>
+    <form th:action="@{/addCategory}" th:object="${category}" method="post">
+        <input type="text" th:field="*{name}" placeholder="Nazwa kategorii"/> <br />
+        <input type="submit" value="Dodaj">
+    </form>
+</body>
+</html>

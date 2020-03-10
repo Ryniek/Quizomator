@@ -6,14 +6,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import pl.rynski.quizytesty.quiz.Category;
 import pl.rynski.quizytesty.quiz.CategoryService;
 import pl.rynski.quizytesty.quiz.Question;
 import pl.rynski.quizytesty.quiz.QuestionService;
 
 import java.security.Principal;
-import java.util.ArrayList;
 
 @Controller
 public class QuestionController {
@@ -35,8 +33,33 @@ public class QuestionController {
     }
 
     @PostMapping("/addPublicQuestion")
-    public String addQuestion(@ModelAttribute Question question, Principal principal) {
-        questionService.addQuestion(question, principal.getName());
+    public String addPublicQuestion(@ModelAttribute Question question, Principal principal) {
+        questionService.addPublicQuestion(question, principal.getName());
         return "redirect:/addPublicQuestion";
+    }
+
+    @GetMapping("/addPrivateQuestion")
+    public String getPrivateQuestionPanel(Model model, Principal principal) {
+        model.addAttribute("question", new Question());
+        model.addAttribute("privateCategoryList", categoryService.getPrivateCategories(principal.getName()));
+        return "addPrivateQuestion";
+    }
+
+    @PostMapping("/addPrivateQuestion")
+    public String addPrivateQuestion(@ModelAttribute Question question, Principal principal) {
+        questionService.addPrivateQuestion(question, principal.getName());
+        return "redirect:/addPrivateQuestion";
+    }
+
+    @GetMapping("/addCategory")
+    public String addCategory(Model model) {
+        model.addAttribute("category", new Category());
+        return "addCategory";
+    }
+
+    @PostMapping("/addCategory")
+    public String addCategory(@ModelAttribute Category category, Principal principal) {
+        categoryService.addCategory(category, principal.getName());
+        return "redirect:/addCategory";
     }
 }

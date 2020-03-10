@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Zaakceptuj pytania</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="jumbotron" th:each="question : ${unacceptedQuestions}">
+                    <h1 th:text="${question.content}" class="display-4">Treść pytania</h1>
+                    <p th:text="'A: ' + ${question.answerA}" class="lead">Odpowiedź A</p>
+                    <p th:text="'B: ' + ${question.answerB}" class="lead">Odpowiedź B</p>
+                    <p th:text="'C: ' + ${question.answerC}" class="lead">Odpowiedź C</p>
+                    <p th:text="'D: ' + ${question.answerD}" class="lead">Odpowiedź D</p>
+                    <p th:text="'Poprawna odpowiedź: ' + ${question.correctAnswer}"></p>
+                    <p th:each="category : ${question.categoryList}">
+                        <span th:text="${category.name}"></span>
+                    </p>
+                    <hr class="my-4">
+                    <p th:text="'Autor: ' + ${question.author}"></p>
+                    <a class="btn btn-success btn-lg" th:href="@{'/acceptQuestion/' + ${question.id}}" role="button">Zaakceptuj</a>
+                    <a class="btn btn-success btn-lg" th:href="@{'/rejectQuestion/' + ${question.id}}" role="button">Odrzuć</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+</body>
+</html>
