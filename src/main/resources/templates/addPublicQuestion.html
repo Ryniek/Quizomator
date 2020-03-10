@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dodaj publiczne pytanie</title>
+</head>
+<body>
+    <h3>Dodaj publiczne pytanie</h3>
+    <form th:action="@{/addPublicQuestion}" th:object="${question}" method="post">
+        <input type="text" th:field="*{content}" placeholder="Treść pytania"/> <br />
+        <input type="text" th:field="*{answerA}" placeholder="Odpowiedź A"/> <br />
+        <input type="text" th:field="*{answerB}" placeholder="Odpowiedź B"/> <br />
+        <input type="text" th:field="*{answerC}" placeholder="Odpowiedź C"/> <br />
+        <input type="text" th:field="*{answerD}" placeholder="Odpowiedź D"/> <br />
+        <select name="correctAnswer" th:field="*{correctAnswer}">
+            <option th:each="answer : ${T(pl.rynski.quizytesty.quiz.Answer).values()}"
+                    th:value="${answer}" th:text="${answer}"></option>
+        </select>
+        <p th:each="cat, stat : ${publicCategoryList}">
+            <input type="checkbox" th:field="*{categoryList}" th:value="${cat.id}"/>
+            <label th:text="${cat.name}" ></label>
+        </p>
+        <input type="submit" value="Dodaj">
+    </form>
+</body>
+</html>
