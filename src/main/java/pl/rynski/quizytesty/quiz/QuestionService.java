@@ -6,6 +6,7 @@ import pl.rynski.quizytesty.repository.CategoryRepository;
 import pl.rynski.quizytesty.repository.QuestionRepostiory;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class QuestionService {
@@ -32,6 +33,16 @@ public class QuestionService {
     }
 
     public List<Question> getUnacceptedQuestions() {
-        return questionRepostiory.findAllByAcceptedIsFalse();
+        return questionRepostiory.findAllUnaccepted();
+    }
+
+    public void acceptQuestion(Long id) {
+        Optional<Question> question = questionRepostiory.findById(id);
+        question.get().setAccepted(true);
+        questionRepostiory.save(question.get());
+    }
+
+    public void rejectQuestion(Long id) {
+        questionRepostiory.deleteById(id);
     }
 }

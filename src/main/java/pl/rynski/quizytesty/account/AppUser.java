@@ -16,14 +16,13 @@ public class AppUser implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(unique = true)
     private String username;
     private String password;
     private boolean isEnabled;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinTable(name="users_roles")
-    private Set<UserRole> roles = new HashSet<>();
+    private Set<UserRole> authorities = new HashSet<>();
 
     public void setEnabled(boolean enabled) {
         isEnabled = enabled;
@@ -70,7 +69,7 @@ public class AppUser implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.singleton(new SimpleGrantedAuthority("ROLE_USER"));
+        return authorities;
     }
 
     public String getPassword() {
@@ -81,11 +80,7 @@ public class AppUser implements UserDetails {
         this.password = password;
     }
 
-    public Set<UserRole> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<UserRole> roles) {
-        this.roles = roles;
+    public void setAuthorities(Set<UserRole> authorities) {
+        this.authorities = authorities;
     }
 }

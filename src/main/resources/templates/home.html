@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -13,26 +14,25 @@
                 <a th:href="@{/generatePrivateQuiz}">Wylosuj pytania do testu</a> <br />
                 <a th:href="@{/showPrivateQuestions}">Pokaż swoje prywatne pytania</a> <br />
                 <a th:href="@{/showPublicQuestions}">Pokaż dodane przez Ciebie publiczne pytania</a> <br />
+                <a th:href="@{/logout}">Wyloguj się</a>
             </div>
             <div class="col">
                 <h3>Dodaj pytanie:</h3>
-                <a th:href="@{/addPublicQuestion}">Publiczne</a>
-                <a th:href="@{/addPrivateQuestion}">Prywatne</a>
+                <a th:href="@{/addPublicQuestion}">Publiczne</a> <br />
+                <a th:href="@{/addPrivateQuestion}">Prywatne</a> <br />
+                <a th:href="@{/addCategory}">Dodaj kategorie</a>
+                <div sec:authorize="hasAuthority('ROLE_ADMIN')">
+                    <a th:href="@{/admin/checkQuestions}">Panel admina</a>
+                </div>
             </div>
             <div class="col">
-                <h3>Dodaj pytanie:</h3>
-                <a th:href="@{/addPublicQuestion}">Publiczne</a>
-                <a th:href="@{/addPrivateQuestion}">Prywatne</a>
+                To filled
             </div>
             <div class="col">
-                <h3>Dodaj pytanie:</h3>
-                <a th:href="@{/addPublicQuestion}">Publiczne</a>
-                <a th:href="@{/addPrivateQuestion}">Prywatne</a>
+                To filled
             </div>
         </div>
     </div>
-
-    <a th:href="@{/logout}">Wyloguj się</a>
 
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

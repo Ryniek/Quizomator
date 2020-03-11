@@ -1,5 +1,7 @@
 package pl.rynski.quizytesty.quiz;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +14,7 @@ public class Category {
     private Long id;
     private String name;
     private String author;
+    @JsonManagedReference
     @ManyToMany(mappedBy = "categoryList")
     private List<Question> questions = new ArrayList<>();
 

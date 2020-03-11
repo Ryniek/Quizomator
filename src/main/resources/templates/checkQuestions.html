@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="../static/styles/style.css" th:href="@{/styles/style.css}" rel="stylesheet" />
     <title>Zaakceptuj pytania</title>
 </head>
 <body>
@@ -11,19 +12,20 @@
         <div class="row">
             <div class="col">
                 <div class="jumbotron" th:each="question : ${unacceptedQuestions}">
-                    <h1 th:text="${question.content}" class="display-4">Treść pytania</h1>
+                    <h1 th:text="'Treść pytania: ' + ${question.content}" class="display-4">Treść pytania</h1>
                     <p th:text="'A: ' + ${question.answerA}" class="lead">Odpowiedź A</p>
                     <p th:text="'B: ' + ${question.answerB}" class="lead">Odpowiedź B</p>
                     <p th:text="'C: ' + ${question.answerC}" class="lead">Odpowiedź C</p>
                     <p th:text="'D: ' + ${question.answerD}" class="lead">Odpowiedź D</p>
                     <p th:text="'Poprawna odpowiedź: ' + ${question.correctAnswer}"></p>
-                    <p th:each="category : ${question.categoryList}">
-                        <span th:text="${category.name}"></span>
-                    </p>
+                    <div class="category-border">
+                        <b>Kategorie: </b>
+                        <p th:each="category : ${question.categoryList}" th:text="${category.name}"></p>
+                    </div>
                     <hr class="my-4">
                     <p th:text="'Autor: ' + ${question.author}"></p>
-                    <a class="btn btn-success btn-lg" th:href="@{'/acceptQuestion/' + ${question.id}}" role="button">Zaakceptuj</a>
-                    <a class="btn btn-success btn-lg" th:href="@{'/rejectQuestion/' + ${question.id}}" role="button">Odrzuć</a>
+                    <a class="btn btn-success btn-lg" th:href="@{'/admin/acceptQuestion/' + ${question.id}}" role="button">Zaakceptuj</a>
+                    <a class="btn btn-danger btn-lg" th:href="@{'/admin/rejectQuestion/' + ${question.id}}" role="button">Odrzuć</a>
                 </div>
             </div>
         </div>

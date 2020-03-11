@@ -1,5 +1,7 @@
 package pl.rynski.quizytesty.quiz;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,15 +13,20 @@ public class Question {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String content;
+    @Column(name = "answer_a")
     private String answerA;
+    @Column(name = "answer_b")
     private String answerB;
+    @Column(name = "answer_c")
     private String answerC;
+    @Column(name = "answer_d")
     private String answerD;
     @Enumerated(EnumType.STRING)
     private Answer correctAnswer;
     private String author;
     private boolean isPrivate;
     private boolean isAccepted;
+    @JsonBackReference
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JoinTable(name = "question_category",
         joinColumns = @JoinColumn(name = "question_id"),

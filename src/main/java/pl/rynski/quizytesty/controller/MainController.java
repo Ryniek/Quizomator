@@ -26,6 +26,11 @@ public class MainController {
         this.userService = userService;
     }
 
+    @GetMapping("/")
+    public String home() {
+        return "home";
+    }
+
     @GetMapping("/home")
     public String getHome() {
         return "home";
