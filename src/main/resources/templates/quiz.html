@@ -1,12 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link href="../static/styles/quiz.css" th:href="@{/styles/quiz.css}" rel="stylesheet" />
     <title>Quiz</title>
 </head>
 <body>
-    <div id="quiz"></div>
+    <div class="quiz-container">
+        <div id="quiz"></div>
+    </div>
+    <button id="next">Next Question</button>
     <button id="submit">Submit Quiz</button>
     <div id="results"></div>
+
+    <input type="hidden" id="yourId" th:value="${id}"/>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script type="application/javascript" src="../static/js/quiz.js" th:src="@{/js/quiz.js}"></script>
 </body>
 </html>
