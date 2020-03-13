@@ -13,7 +13,9 @@
     <button id="submit">Submit Quiz</button>
     <div id="results"></div>
 
-    <input type="hidden" id="yourId" th:value="${id}"/>
+
+    <input type="hidden" id="numberOfQuestions" th:value="${quizDto.quantity}"/>
+    <input type="hidden" id="categories" th:value="${quizDto.categoryList}"/>
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script type="application/javascript" src="../static/js/quiz.js" th:src="@{/js/quiz.js}"></script>

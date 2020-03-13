@@ -1,6 +1,8 @@
-package pl.rynski.quizytesty.quiz;
+package pl.rynski.quizytesty.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import pl.rynski.quizytesty.model.Answer;
+import pl.rynski.quizytesty.model.Category;
 
 import javax.persistence.*;
 import java.util.ArrayList;

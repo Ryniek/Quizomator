@@ -1,4 +1,4 @@
-package pl.rynski.quizytesty.service;
+package pl.rynski.quizytesty.account;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
@@ -12,6 +12,7 @@ import pl.rynski.quizytesty.account.VerificationToken;
 import pl.rynski.quizytesty.repository.AppUserRepository;
 import pl.rynski.quizytesty.repository.UserRoleRepository;
 import pl.rynski.quizytesty.repository.VerificationTokenRepository;
+import pl.rynski.quizytesty.service.MailSenderService;
 
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;

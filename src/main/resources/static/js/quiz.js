@@ -1,5 +1,10 @@
 $.ajax({
     url: 'getQuestionsForQuiz',
+    traditional: true,
+    data: {
+        numberOfQuestions: $("#numberOfQuestions").val(),
+        categories: $("#categories").val()
+    },
     success: function (result) {
         var questions = JSON.parse(result);
         startQuiz(questions);

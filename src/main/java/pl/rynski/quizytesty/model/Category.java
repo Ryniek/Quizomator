@@ -1,4 +1,4 @@
-package pl.rynski.quizytesty.quiz;
+package pl.rynski.quizytesty.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -53,4 +53,12 @@ public class Category {
         this.questions = questions;
     }
 
+    @Override
+    public String toString() {
+        return "Category{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", author='" + author + '\'' +
+                '}';
+    }
 }

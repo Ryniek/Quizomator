@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Wybierz quiz</title>
+</head>
+<body>
+    <h3>Wybierz ilość pytań oraz kategorie w których chcesz się sprawdzić</h3>
+
+    <form th:action="@{/chooseQuiz}" th:object="${quizDto}" method="post">
+        <label for="quantity">Ilość pytań: </label>
+        <input id="quantity" type="number" th:field="*{quantity}">
+        <p th:each="category : ${publicCategoryList}">
+            <input type="checkbox" th:field="*{categoryList}" th:value="${category.name}"/>
+            <label th:text="${category.name}" ></label>
+        </p>
+        <input type="submit" value="Dodaj">
+    </form>
+</body>
+</html>

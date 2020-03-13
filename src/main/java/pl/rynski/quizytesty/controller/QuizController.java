@@ -2,47 +2,48 @@ package pl.rynski.quizytesty.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseBody;
-import pl.rynski.quizytesty.quiz.Category;
-import pl.rynski.quizytesty.quiz.Question;
-import pl.rynski.quizytesty.quiz.QuizService;
-import pl.rynski.quizytesty.repository.QuestionRepostiory;
-import pl.rynski.quizytesty.thymeleaf.CategoryDto;
+import org.springframework.web.bind.annotation.*;
+import pl.rynski.quizytesty.model.Question;
+import pl.rynski.quizytesty.service.CategoryService;
+import pl.rynski.quizytesty.service.QuizService;
+import pl.rynski.quizytesty.thymeleaf.QuizDto;
 
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class QuizController {
 
     private QuizService quizService;
+    private CategoryService categoryService;
 
     @Autowired
-    public QuizController(QuizService quizService) {
+    public QuizController(QuizService quizService, CategoryService categoryService) {
         this.quizService = quizService;
+        this.categoryService = categoryService;
     }
 
     @GetMapping("/getQuestionsForQuiz")
     @ResponseBody
-    public String getQuestionsForQuiz() throws JsonProcessingException {
-        List<Question> question = quizService.findAllAccepted();
+    public String getQuestionsForQuiz(@RequestParam int numberOfQuestions, @RequestParam List<String> categories) throws JsonProcessingException {
+        List<Question> questions = quizService.drawQuestions(numberOfQuestions, categories);
         ObjectMapper mapper = new ObjectMapper();
-        String jsonString = mapper.writeValueAsString(question);
+        String jsonString = mapper.writeValueAsString(questions);
         return jsonString;
     }
 
-    @GetMapping("/quiz/{quantity}")
-    public String getQuiz(@PathVariable int quantity, Model model) {
+    @GetMapping("/quiz-panel")
+    public String getQuizPanel(Model model) {
+        model.addAttribute("quizDto", new QuizDto());
+        model.addAttribute("publicCategoryList", categoryService.getPublicCategories());
+        return "chooseQuiz";
+    }
 
-        model.addAttribute("categories", new CategoryDto());
+    @PostMapping("/chooseQuiz")
+    public String chooseQuiz(@ModelAttribute QuizDto quizDto, Model model) {
+        model.addAttribute("quizDto", quizDto);
         return "quiz";
     }
 }

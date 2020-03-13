@@ -1,7 +1,8 @@
-package pl.rynski.quizytesty.quiz;
+package pl.rynski.quizytesty.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pl.rynski.quizytesty.model.Category;
 import pl.rynski.quizytesty.repository.CategoryRepository;
 
 import java.util.List;

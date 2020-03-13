@@ -6,10 +6,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import pl.rynski.quizytesty.quiz.Category;
-import pl.rynski.quizytesty.quiz.CategoryService;
-import pl.rynski.quizytesty.quiz.Question;
-import pl.rynski.quizytesty.quiz.QuestionService;
+import pl.rynski.quizytesty.model.Category;
+import pl.rynski.quizytesty.service.CategoryService;
+import pl.rynski.quizytesty.model.Question;
+import pl.rynski.quizytesty.service.QuestionService;
 
 import java.security.Principal;
 
