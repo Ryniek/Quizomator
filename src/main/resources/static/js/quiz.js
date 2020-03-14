@@ -81,52 +81,34 @@ function startQuiz(questions){
             }
         });
 
+        var result = {
+            questions : myQuestions.length,
+            correctAnswers :  numCorrect,
+            categories: $("#categories").val()
+        }
+
+        $.ajax({
+            type: "POST",
+            url: 'summarizeQuiz',
+            contentType: "application/json",
+            dataType: 'json',
+            data: JSON.stringify(result),
+            crossDomain: false,
+            success:function(result) {
+                window.location = '/summarizeQuiz';
+            },
+            error: function(result){
+                window.location = '/summarizeQuiz';
+            }
+        })
+
         // show number of correct answers out of total
-        resultsContainer.innerHTML = `${numCorrect} out of ${myQuestions.length}`;
+        //resultsContainer.innerHTML = `${numCorrect} out of ${myQuestions.length}`;
     }
 
     const quizContainer = document.getElementById('quiz');
-    const resultsContainer = document.getElementById('results');
     const submitButton = document.getElementById('submit');
     const myQuestions = questions;
-    /*const myQuestions = [
-        {
-            "id": 1,
-            "content": "Kiedy wybuchła II Wojna Światowa?",
-            "answerA": "8 maja 1945",
-            "answerB": "1 września 1939",
-            "answerC": "10 września 1939",
-            "answerD": "20 października 1940",
-            "correctAnswer": "B",
-            "author": "michalrynski96@gmail.com",
-            "private": false,
-            "accepted": true
-        },
-        {
-            "id": 4,
-            "content": "Zwycięzcą Ligi Mistrzów w siatkówkę w sezonie 2019/2020 został: ",
-            "answerA": "Zenit Kazań",
-            "answerB": "PGE Skra Bełchatów",
-            "answerC": "Sir Safety Perugia",
-            "answerD": "Cucine Lube Civitanova",
-            "correctAnswer": "D",
-            "author": "GLOBAL",
-            "private": false,
-            "accepted": true
-        },
-        {
-            "id": 5,
-            "content": "Która adnotacja służy uruchomienia danej metody od razu przy starcie aplikacji: ",
-            "answerA": "@EventHandler(ApplicationReadyContext.class)",
-            "answerB": "@Service",
-            "answerC": "@Id",
-            "answerD": "@SpringBootApplication",
-            "correctAnswer": "A",
-            "author": "michalrynski96@gmail.com",
-            "private": true,
-            "accepted": true
-        }
-    ];*/
 
     // Kick things off
     buildQuiz();

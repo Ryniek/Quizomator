@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Twoje quizy</title>
+</head>
+<body>
+    <a th:href="@{/home}">Menu główne</a> <br />
+    <h3>Twoje ostatnie quizy:</h3>
+    <table>
+        <tr>
+            <th>Data quizu</th>
+            <th>Kategorie quizu</th>
+            <th>Odpowiedzie poprawne</th>
+            <th>Odpowiedzi błędne</th>
+        </tr>
+        <tr th:each="quiz: ${quizHistory}">
+            <td th:text="${quiz.getFormattedDate()}"></td>
+            <td th:text="${quiz.categories}"></td>
+            <td th:text="${quiz.correctAnswers}"></td>
+            <td th:text="${quiz.wrongAnswers}"></td>
+        </tr>
+    </table>
+</body>
+</html>

@@ -34,10 +34,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
+        http.csrf().disable().authorizeRequests()
                 .antMatchers("/admin/**").hasRole("ADMIN")
                 .antMatchers("/signup", "/register","/verify-token").permitAll()
-                .antMatchers("/getQuestionsForQuiz", "/quiz").permitAll()
+                .antMatchers("/getQuestionsForQuiz", "/quiz", "/summarizeQuiz").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().loginPage("/login").defaultSuccessUrl("/home").permitAll()

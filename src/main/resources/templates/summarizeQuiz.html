@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Podsumowanie quizu</title>
+</head>
+<body>
+    <h3>Podsumowanie</h3>
+    <p th:text="'Poprawne: ' + ${result.getCorrectAnswers()}"></p>
+    <p th:text="'Błędne: ' + ${result.getWrongAnswers()}"></p>
+    <p th:text="'Autor: ' + ${result.getAuthor()}"></p>
+    <p th:text="'Kategorie quizu: ' + ${result.getCategories()}"></p>
+    <a th:href="@{/home}">Menu główne</a> <br />
+</body>
+</html>

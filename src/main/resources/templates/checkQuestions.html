@@ -9,6 +9,7 @@
 </head>
 <body>
     <div class="container">
+        <a th:href="@{/home}">Menu główne</a> <br />
         <div class="row">
             <div class="col">
                 <div class="jumbotron" th:each="question : ${unacceptedQuestions}">

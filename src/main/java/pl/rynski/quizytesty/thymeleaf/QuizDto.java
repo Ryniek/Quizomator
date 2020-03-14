@@ -1,7 +1,5 @@
 package pl.rynski.quizytesty.thymeleaf;
 
-import java.util.List;
-
 public class QuizDto {
 
     private int quantity;
